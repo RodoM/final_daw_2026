@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memotest Mundial 2026</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/juego.css">
+</head>
+<body>
+    <header>
+        <h1>Memotest Mundial 2026</h1>
+        <nav>
+            <a href="pages/contacto.html">Contacto</a>
+            <a href="https://github.com/RodoM/final_daw_2026" target="_blank" rel="noopener noreferrer">Repositorio en GitHub</a>
+        </nav>
+    </header>
+    <main>
+        <section class="pantalla-inicio" id="pantalla-inicio">
+            <h2>Comenzar partida</h2>
+            <form class="formulario-inicio" id="formulario-inicio">
+                <label for="nombre-jugador">Tu nombre</label>
+                <input type="text" id="nombre-jugador" name="nombre-jugador" autocomplete="off">
+                <label for="nivel">Nivel</label>
+                <select id="nivel" name="nivel">
+                    <option value="">Elegí un nivel</option>
+                    <option value="facil">Fácil (16 cartas)</option>
+                    <option value="medio">Medio (20 cartas)</option>
+                    <option value="dificil">Difícil (36 cartas)</option>
+                </select>
+                <p class="mensaje-error oculto" id="error-inicio"></p>
+                <button type="submit" class="boton-principal">Comenzar</button>
+            </form>
+        </section>
+        <section class="pantalla-juego oculto" id="pantalla-juego">
+            <div class="tablero" id="tablero"></div>
+        </section>
+    </main>
+    <footer></footer>
+    <script src="js/validaciones.js"></script>
+    <script src="js/interfaz.js"></script>
+    <script src="js/eventos.js"></script>
+    <script src="js/inicio.js"></script>
+</body>
+</html>
