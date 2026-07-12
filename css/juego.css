@@ -1,0 +1,57 @@
+.tablero {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.carta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 22%;
+    aspect-ratio: 1 / 1;
+    margin: 1%;
+    border: 0.125rem solid var(--color-borde);
+    border-radius: 0.5rem;
+    background: var(--color-primario);
+    padding: 0;
+    cursor: pointer;
+}
+
+.carta-imagen {
+    display: none;
+    width: 70%;
+}
+
+.carta-dorso {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: var(--color-texto-claro);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.carta--descubierta .carta-imagen {
+    display: block;
+}
+
+.carta--descubierta .carta-dorso {
+    display: none;
+}
+
+.carta--acertada {
+    border-color: var(--color-primario);
+    border-width: 0.25rem;
+}
+
+.carta--error {
+    border-color: #c0392b;
+    border-width: 0.25rem;
+}
+
+.tablero--dificil .carta {
+    width: 14%;
+}

@@ -62,10 +62,6 @@ footer {
     font-size: 0.875rem;
 }
 
-.oculto {
-    display: none;
-}
-
 .pantalla-inicio {
     display: flex;
     flex-direction: column;
@@ -116,6 +112,10 @@ footer {
 .boton-principal:hover {
     background-color: var(--color-secundario);
     color: var(--color-texto);
+}
+
+.oculto {
+    display: none;
 }
 
 @media (min-width: 48rem) {

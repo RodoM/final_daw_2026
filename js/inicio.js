@@ -6,6 +6,7 @@ var campoNivel;
 var mensajeErrorInicio;
 var pantallaInicio;
 var pantallaJuego;
+var tableroElemento;
 var nombreJugador;
 var nivelElegido;
 
@@ -16,6 +17,7 @@ function iniciarAplicacion() {
     mensajeErrorInicio = document.getElementById('error-inicio');
     pantallaInicio = document.getElementById('pantalla-inicio');
     pantallaJuego = document.getElementById('pantalla-juego');
+    tableroElemento = document.getElementById('tablero');
     registrarEventos();
 }
 
