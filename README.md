@@ -7,6 +7,20 @@ HTML5, CSS3 y JavaScript.
 
 Banderas de las selecciones del Mundial 2026.
 
+## Sistema de puntaje
+
+| Concepto | Valor |
+| --- | --- |
+| Par correcto | +100 puntos |
+| Error en fácil | -10 puntos |
+| Error en medio | -20 puntos |
+| Error en difícil | -30 puntos |
+| Bonus por completar la partida | +300 puntos |
+| Penalización por tiempo | -1 punto por cada segundo transcurrido |
+
+El bonus y la penalización por tiempo se aplican una sola vez, al finalizar la partida. El puntaje
+nunca queda en negativo: si una resta lo llevaría por debajo de 0, se acota a 0.
+
 ## Fuente de las imágenes
 
 Las banderas de `assets/images/banderas/` son del proyecto [flag-icons](https://github.com/lipis/flag-icons)

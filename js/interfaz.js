@@ -15,6 +15,16 @@ function mostrarPantallaJuego() {
     pantallaJuego.classList.remove('oculto');
 }
 
+function mostrarPantallaInicio() {
+    pantallaJuego.classList.add('oculto');
+    pantallaInicio.classList.remove('oculto');
+}
+
+function precargarFormularioInicio() {
+    campoNombre.value = estadoJuego.nombreJugador;
+    campoNivel.value = estadoJuego.nivel;
+}
+
 function dibujarTablero(cartas, nivel) {
     var indice;
     var boton;
@@ -41,6 +51,71 @@ function dibujarTablero(cartas, nivel) {
 
         boton.appendChild(imagen);
         boton.appendChild(dorso);
+        boton.addEventListener('click', alHacerClickEnCarta);
         tableroElemento.appendChild(boton);
     }
+}
+
+function mostrarCartaDescubierta(carta) {
+    carta.classList.add('carta--descubierta');
+}
+
+function marcarCartasAcertadas(primeraCarta, segundaCarta) {
+    primeraCarta.classList.add('carta--acertada');
+    segundaCarta.classList.add('carta--acertada');
+}
+
+function marcarCartasConError(primeraCarta, segundaCarta) {
+    primeraCarta.classList.add('carta--error');
+    segundaCarta.classList.add('carta--error');
+}
+
+function ocultarCartas(primeraCarta, segundaCarta) {
+    primeraCarta.classList.remove('carta--descubierta');
+    primeraCarta.classList.remove('carta--error');
+    segundaCarta.classList.remove('carta--descubierta');
+    segundaCarta.classList.remove('carta--error');
+}
+
+function formatearTiempo(segundosTotales) {
+    var minutos;
+    var segundos;
+    var minutosTexto;
+    var segundosTexto;
+    minutos = Math.floor(segundosTotales / 60);
+    segundos = segundosTotales % 60;
+    if (minutos < 10) {
+        minutosTexto = '0' + minutos;
+    } else {
+        minutosTexto = '' + minutos;
+    }
+    if (segundos < 10) {
+        segundosTexto = '0' + segundos;
+    } else {
+        segundosTexto = '' + segundos;
+    }
+    return minutosTexto + ':' + segundosTexto;
+}
+
+function actualizarMarcadores() {
+    marcadorIntentos.textContent = estadoJuego.intentos;
+    marcadorPares.textContent = estadoJuego.aciertos;
+    marcadorErrores.textContent = estadoJuego.errores;
+    marcadorPuntaje.textContent = estadoJuego.puntaje;
+    marcadorTiempo.textContent = formatearTiempo(estadoJuego.segundos);
+}
+
+function mostrarModalVictoria() {
+    resultadoNombre.textContent = estadoJuego.nombreJugador;
+    resultadoNivel.textContent = NIVELES[estadoJuego.nivel].nombre;
+    resultadoIntentos.textContent = estadoJuego.intentos;
+    resultadoErrores.textContent = estadoJuego.errores;
+    resultadoTiempo.textContent = formatearTiempo(estadoJuego.segundos);
+    resultadoPuntaje.textContent = estadoJuego.puntaje;
+    modalVictoria.classList.remove('oculto');
+    modalContenidoVictoria.focus();
+}
+
+function ocultarModalVictoria() {
+    modalVictoria.classList.add('oculto');
 }

@@ -34,8 +34,34 @@
             </form>
         </section>
         <section class="pantalla-juego oculto" id="pantalla-juego">
+            <section class="panel-marcadores" id="panel-marcadores">
+                <p>Intentos: <span id="marcador-intentos">0</span></p>
+                <p>Pares: <span id="marcador-pares">0</span></p>
+                <p>Errores: <span id="marcador-errores">0</span></p>
+                <p>Puntaje: <span id="marcador-puntaje">0</span></p>
+                <p>Tiempo: <span id="marcador-tiempo">00:00</span></p>
+            </section>
+            <div class="panel-controles">
+                <button type="button" class="boton-secundario" id="boton-reiniciar">Reiniciar partida</button>
+                <button type="button" class="boton-secundario" id="boton-volver-inicio">Volver al inicio</button>
+            </div>
             <div class="tablero" id="tablero"></div>
         </section>
+        <div class="modal-fondo oculto" id="modal-victoria">
+            <div class="modal-contenido" id="modal-contenido-victoria" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-victoria" tabindex="-1">
+                <h2 id="titulo-modal-victoria">¡Partida completada!</h2>
+                <p>Jugador: <span id="resultado-nombre"></span></p>
+                <p>Nivel: <span id="resultado-nivel"></span></p>
+                <p>Intentos: <span id="resultado-intentos"></span></p>
+                <p>Errores: <span id="resultado-errores"></span></p>
+                <p>Tiempo: <span id="resultado-tiempo"></span></p>
+                <p>Puntaje final: <span id="resultado-puntaje"></span></p>
+                <div class="modal-botones">
+                    <button type="button" class="boton-principal" id="boton-jugar-de-nuevo">Jugar de nuevo</button>
+                    <button type="button" class="boton-secundario" id="boton-cerrar-modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
     </main>
     <footer></footer>
     <script src="js/validaciones.js"></script>
