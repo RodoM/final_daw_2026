@@ -31,3 +31,15 @@
 .formulario-contacto textarea {
     resize: vertical;
 }
+
+@media (min-width: 48rem) {
+    .formulario-contacto {
+        max-width: 26rem;
+    }
+}
+
+@media (min-width: 64rem) {
+    .formulario-contacto {
+        max-width: 28rem;
+    }
+}
