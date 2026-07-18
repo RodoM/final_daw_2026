@@ -18,8 +18,27 @@
         </nav>
     </header>
     <main>
-        <h2>Contacto</h2>
+        <section class="pantalla-contacto">
+            <h2>Contacto</h2>
+            <form class="formulario-contacto" id="formulario-contacto">
+                <label for="nombre-contacto">Nombre</label>
+                <input type="text" id="nombre-contacto" name="nombre-contacto" autocomplete="name">
+                <p class="mensaje-error oculto" id="error-nombre-contacto"></p>
+
+                <label for="mail-contacto">Mail</label>
+                <input type="text" id="mail-contacto" name="mail-contacto" autocomplete="email">
+                <p class="mensaje-error oculto" id="error-mail-contacto"></p>
+
+                <label for="mensaje-contacto">Mensaje</label>
+                <textarea id="mensaje-contacto" name="mensaje-contacto" rows="6"></textarea>
+                <p class="mensaje-error oculto" id="error-mensaje-contacto"></p>
+
+                <button type="submit" class="boton-principal">Enviar</button>
+            </form>
+        </section>
     </main>
     <footer></footer>
+    <script src="../js/validaciones.js"></script>
+    <script src="../js/contacto.js"></script>
 </body>
 </html>
