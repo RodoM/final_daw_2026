@@ -29,3 +29,18 @@ function guardarPartida(partida) {
 function borrarPartidas() {
     localStorage.removeItem(CLAVE_PARTIDAS);
 }
+
+var CLAVE_TEMA = 'memotest-tema';
+
+function obtenerTema() {
+    var temaGuardado;
+    temaGuardado = localStorage.getItem(CLAVE_TEMA);
+    if (temaGuardado === null) {
+        return 'claro';
+    }
+    return temaGuardado;
+}
+
+function guardarTema(tema) {
+    localStorage.setItem(CLAVE_TEMA, tema);
+}

@@ -52,6 +52,7 @@ function iniciarAplicacion() {
     botonCerrarModal = document.getElementById('boton-cerrar-modal');
     registrarEventos();
     iniciarRanking();
+    iniciarTema();
 }
 
 iniciarAplicacion();

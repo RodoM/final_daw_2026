@@ -83,6 +83,7 @@ function iniciarPaginaContacto() {
     errorMailContacto = document.getElementById('error-mail-contacto');
     errorMensajeContacto = document.getElementById('error-mensaje-contacto');
     registrarEventosContacto();
+    iniciarTema();
 }
 
 iniciarPaginaContacto();
