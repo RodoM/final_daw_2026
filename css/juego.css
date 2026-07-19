@@ -101,6 +101,46 @@
     width: 14%;
 }
 
+.controles-orden-ranking {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.controles-orden-ranking select {
+    padding: 0.25rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 0.25rem;
+}
+
+.mensaje-sin-partidas {
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.tabla-ranking-contenedor {
+    max-height: 20rem;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.tabla-ranking {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.75rem;
+}
+
+.modal-contenido--ranking {
+    max-width: 30rem;
+}
+
+.tabla-ranking th,
+.tabla-ranking td {
+    padding: 0.375rem;
+    border-bottom: 1px solid var(--color-borde);
+    text-align: left;
+}
+
 @media (min-width: 48rem) {
     .panel-marcadores {
         gap: 1.5rem;
@@ -109,6 +149,10 @@
 
     .carta {
         border-width: 0.1875rem;
+    }
+
+    .tabla-ranking {
+        font-size: 0.875rem;
     }
 }
 
@@ -120,5 +164,9 @@
 
     .panel-marcadores {
         font-size: 1.125rem;
+    }
+
+    .modal-contenido--ranking {
+        max-width: 40rem;
     }
 }

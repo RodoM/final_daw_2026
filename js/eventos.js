@@ -28,10 +28,25 @@ function alCumplirseUnSegundo() {
     actualizarMarcadores();
 }
 
+function guardarResultadoPartida() {
+    var partida;
+    partida = {
+        nombre: estadoJuego.nombreJugador,
+        puntaje: estadoJuego.puntaje,
+        nivel: estadoJuego.nivel,
+        intentos: estadoJuego.intentos,
+        errores: estadoJuego.errores,
+        fecha: new Date().toISOString(),
+        duracion: estadoJuego.segundos
+    };
+    guardarPartida(partida);
+}
+
 function terminarPartida() {
     detenerTemporizador();
     finalizarPartida();
     actualizarMarcadores();
+    guardarResultadoPartida();
     mostrarModalVictoria();
 }
 

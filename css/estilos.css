@@ -132,6 +132,29 @@ footer {
     color: var(--color-texto);
 }
 
+.acciones-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.boton-header {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--color-texto-claro);
+    border-radius: 0.25rem;
+    background: transparent;
+    color: var(--color-texto-claro);
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+}
+
+.boton-header:hover {
+    background-color: var(--color-secundario);
+    color: var(--color-texto);
+}
+
 .modal-fondo {
     display: flex;
     justify-content: center;

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/juego.css">
+    <script src="js/almacenamiento.js"></script>
 </head>
 <body>
     <header>
@@ -15,6 +16,9 @@
             <a href="pages/contacto.html">Contacto</a>
             <a href="https://github.com/RodoM/final_daw_2026" target="_blank" rel="noopener noreferrer">Repositorio en GitHub</a>
         </nav>
+        <div class="acciones-header">
+            <button type="button" class="boton-header" id="boton-ranking">Ranking</button>
+        </div>
     </header>
     <main>
         <section class="pantalla-inicio" id="pantalla-inicio">
@@ -62,12 +66,58 @@
                 </div>
             </div>
         </div>
+        <div class="modal-fondo oculto" id="modal-ranking">
+            <div class="modal-contenido modal-contenido--ranking" id="modal-contenido-ranking" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-ranking" tabindex="-1">
+                <h2 id="titulo-modal-ranking">Ranking de partidas</h2>
+                <div class="controles-orden-ranking">
+                    <label for="orden-ranking">Ordenar por</label>
+                    <select id="orden-ranking">
+                        <option value="puntaje">Puntaje</option>
+                        <option value="fecha">Fecha</option>
+                        <option value="duracion">Duración</option>
+                        <option value="nivel">Nivel</option>
+                    </select>
+                </div>
+                <p class="mensaje-sin-partidas oculto" id="mensaje-sin-partidas">Todavía no hay partidas jugadas.</p>
+                <div class="tabla-ranking-contenedor">
+                    <table class="tabla-ranking oculto" id="tabla-ranking">
+                        <thead>
+                            <tr>
+                                <th>Jugador</th>
+                                <th>Nivel</th>
+                                <th>Puntaje</th>
+                                <th>Intentos</th>
+                                <th>Errores</th>
+                                <th>Duración</th>
+                                <th>Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpo-tabla-ranking"></tbody>
+                    </table>
+                </div>
+                <div class="modal-botones">
+                    <button type="button" class="boton-secundario" id="boton-borrar-ranking">Borrar historial</button>
+                    <button type="button" class="boton-secundario" id="boton-cerrar-ranking">Cerrar</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-fondo oculto" id="modal-confirmar-borrado">
+            <div class="modal-contenido" id="modal-contenido-confirmar-borrado" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-confirmar-borrado" tabindex="-1">
+                <h2 id="titulo-modal-confirmar-borrado">Borrar historial</h2>
+                <p>¿Seguro que querés borrar todas las partidas guardadas? Esta acción no se puede deshacer.</p>
+                <div class="modal-botones">
+                    <button type="button" class="boton-principal" id="boton-confirmar-borrado">Sí, borrar</button>
+                    <button type="button" class="boton-secundario" id="boton-cancelar-borrado">Cancelar</button>
+                </div>
+            </div>
+        </div>
     </main>
     <footer></footer>
     <script src="js/validaciones.js"></script>
     <script src="js/datos-cartas.js"></script>
     <script src="js/logica-juego.js"></script>
     <script src="js/interfaz.js"></script>
+    <script src="js/ranking.js"></script>
     <script src="js/eventos.js"></script>
     <script src="js/inicio.js"></script>
 </body>

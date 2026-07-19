@@ -21,6 +21,13 @@ Banderas de las selecciones del Mundial 2026.
 El bonus y la penalización por tiempo se aplican una sola vez, al finalizar la partida. El puntaje
 nunca queda en negativo: si una resta lo llevaría por debajo de 0, se acota a 0.
 
+## Ranking
+
+- Cada partida guarda jugador, nivel, puntaje, intentos, errores, fecha y duración en LocalStorage
+  (clave `memotest-partidas`, últimas 50 partidas).
+- Se puede ordenar por puntaje, fecha, duración o nivel, y borrar el historial completo con
+  confirmación.
+
 ## Fuente de las imágenes
 
 Las banderas de `assets/images/banderas/` son del proyecto [flag-icons](https://github.com/lipis/flag-icons)

@@ -51,6 +51,7 @@ function iniciarAplicacion() {
     botonJugarDeNuevo = document.getElementById('boton-jugar-de-nuevo');
     botonCerrarModal = document.getElementById('boton-cerrar-modal');
     registrarEventos();
+    iniciarRanking();
 }
 
 iniciarAplicacion();
