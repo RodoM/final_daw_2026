@@ -46,6 +46,7 @@ function terminarPartida() {
     detenerTemporizador();
     finalizarPartida();
     actualizarMarcadores();
+    reproducirSonido('victoria');
     guardarResultadoPartida();
     mostrarModalVictoria();
 }
@@ -55,6 +56,7 @@ function resolverTurno() {
     coincide = compararCartasSeleccionadas();
     if (coincide === true) {
         registrarAcierto();
+        reproducirSonido('acierto');
         marcarCartasAcertadas(elementoPrimeraCarta, elementoSegundaCarta);
         limpiarCartasDelTurno();
         limpiarElementosDelTurno();
@@ -66,6 +68,7 @@ function resolverTurno() {
         return;
     }
     registrarError();
+    reproducirSonido('error');
     marcarCartasConError(elementoPrimeraCarta, elementoSegundaCarta);
     actualizarMarcadores();
     identificadorTimeoutOcultarCartas = setTimeout(alCumplirseTiempoDeOcultarCartas, MILISEGUNDOS_OCULTAR_CARTAS);
@@ -101,6 +104,7 @@ function alHacerClickEnCarta(evento) {
     }
     esPrimeraCartaDelTurno = estadoJuego.primeraCarta === null;
     mostrarCartaDescubierta(carta);
+    reproducirSonido('seleccionar');
     guardarCartaSeleccionada(idCarta, posicionCarta);
     if (esPrimeraCartaDelTurno === true) {
         elementoPrimeraCarta = carta;

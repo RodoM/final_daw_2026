@@ -44,3 +44,22 @@ function obtenerTema() {
 function guardarTema(tema) {
     localStorage.setItem(CLAVE_TEMA, tema);
 }
+
+var CLAVE_SONIDOS = 'memotest-sonidos';
+
+function obtenerSonidosActivados() {
+    var valorGuardado;
+    valorGuardado = localStorage.getItem(CLAVE_SONIDOS);
+    if (valorGuardado === null) {
+        return true;
+    }
+    return valorGuardado === 'activado';
+}
+
+function guardarSonidosActivados(sonidosActivados) {
+    if (sonidosActivados === true) {
+        localStorage.setItem(CLAVE_SONIDOS, 'activado');
+        return;
+    }
+    localStorage.setItem(CLAVE_SONIDOS, 'desactivado');
+}

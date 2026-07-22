@@ -53,6 +53,7 @@ function iniciarAplicacion() {
     registrarEventos();
     iniciarRanking();
     iniciarTema();
+    iniciarSonidos();
 }
 
 iniciarAplicacion();

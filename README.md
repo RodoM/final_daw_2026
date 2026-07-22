@@ -21,18 +21,26 @@ Banderas de las selecciones del Mundial 2026.
 El bonus y la penalización por tiempo se aplican una sola vez, al finalizar la partida. El puntaje
 nunca queda en negativo: si una resta lo llevaría por debajo de 0, se acota a 0.
 
-## Ranking y modo oscuro
+## Ranking, modo oscuro y sonidos
 
 - **Ranking**: cada partida guarda jugador, nivel, puntaje, intentos, errores, fecha y duración en
   LocalStorage (clave `memotest-partidas`, últimas 50 partidas). Se puede ordenar por puntaje, fecha,
   duración o nivel, y borrar el historial completo con confirmación.
 - **Modo oscuro y claro**: preferencia guardada en LocalStorage (clave `memotest-tema`), disponible en
   el juego y en la página de contacto.
+- **Sonidos**: al seleccionar una carta, acertar un par, cometer un error y ganar la partida. Se
+  pueden activar o desactivar, con la preferencia guardada en LocalStorage (clave `memotest-sonidos`).
 
 ## Fuente de las imágenes
 
 Las banderas de `assets/images/banderas/` son del proyecto [flag-icons](https://github.com/lipis/flag-icons)
 de Panayiotis Lipiridis, publicado bajo licencia MIT.
+
+## Fuente de los sonidos
+
+- `acierto.mp3` y `victoria.mp3`: incluidos en la estructura inicial del proyecto.
+- `seleccionar.wav` y `error.wav`: generados para este proyecto con un script propio (tonos
+  sintetizados con el módulo `wave` de Python), sin usar audio de terceros.
 
 ## Integrantes
 
