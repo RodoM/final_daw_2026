@@ -101,6 +101,15 @@
     width: 14%;
 }
 
+.desglose-puntaje {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0;
+    list-style: none;
+    font-size: 0.875rem;
+}
+
 .controles-orden-ranking {
     display: flex;
     align-items: center;

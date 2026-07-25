@@ -22,6 +22,13 @@ var resultadoIntentos;
 var resultadoErrores;
 var resultadoTiempo;
 var resultadoPuntaje;
+var desglosePares;
+var desgloseBonusRacha;
+var desglosePenalizacionErrores;
+var desgloseBonusRapidez;
+var desgloseBonusIntentos;
+var desgloseBonusFinalizar;
+var desglosePenalizacionTiempo;
 var botonJugarDeNuevo;
 var botonCerrarModal;
 
@@ -48,6 +55,13 @@ function iniciarAplicacion() {
     resultadoErrores = document.getElementById('resultado-errores');
     resultadoTiempo = document.getElementById('resultado-tiempo');
     resultadoPuntaje = document.getElementById('resultado-puntaje');
+    desglosePares = document.getElementById('desglose-pares');
+    desgloseBonusRacha = document.getElementById('desglose-bonus-racha');
+    desglosePenalizacionErrores = document.getElementById('desglose-penalizacion-errores');
+    desgloseBonusRapidez = document.getElementById('desglose-bonus-rapidez');
+    desgloseBonusIntentos = document.getElementById('desglose-bonus-intentos');
+    desgloseBonusFinalizar = document.getElementById('desglose-bonus-finalizar');
+    desglosePenalizacionTiempo = document.getElementById('desglose-penalizacion-tiempo');
     botonJugarDeNuevo = document.getElementById('boton-jugar-de-nuevo');
     botonCerrarModal = document.getElementById('boton-cerrar-modal');
     registrarEventos();

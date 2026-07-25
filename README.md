@@ -21,6 +21,22 @@ Banderas de las selecciones del Mundial 2026.
 El bonus y la penalización por tiempo se aplican una sola vez, al finalizar la partida. El puntaje
 nunca queda en negativo: si una resta lo llevaría por debajo de 0, se acota a 0.
 
+### Reglas avanzadas de puntaje
+
+Además de la fórmula base, se suman o restan estos conceptos:
+
+| Concepto | Valor |
+| --- | --- |
+| Bonus por racha de 3 aciertos seguidos o más | +20 puntos por cada acierto de la racha |
+| Penalización extra por cada error seguido a partir del segundo | +5 puntos sobre la penalización del nivel, por cada error consecutivo |
+| Bonus por terminar fácil en 60 segundos o menos | +100 puntos |
+| Bonus por terminar medio en 90 segundos o menos | +100 puntos |
+| Bonus por terminar difícil en 150 segundos o menos | +100 puntos |
+| Bonus por completar con pocos intentos (pares del nivel + 2 o menos) | +100 puntos |
+
+La racha de aciertos y la de errores seguidos se cortan apenas ocurre el evento contrario. El modal
+de victoria muestra el desglose completo de cada concepto que sumó o restó puntos.
+
 ## Ranking, modo oscuro y sonidos
 
 - **Ranking**: cada partida guarda jugador, nivel, puntaje, intentos, errores, fecha y duración en

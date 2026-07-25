@@ -112,6 +112,13 @@ function mostrarModalVictoria() {
     resultadoErrores.textContent = estadoJuego.errores;
     resultadoTiempo.textContent = formatearTiempo(estadoJuego.segundos);
     resultadoPuntaje.textContent = estadoJuego.puntaje;
+    desglosePares.textContent = '+' + estadoJuego.desglosePuntaje.porPares;
+    desgloseBonusRacha.textContent = '+' + estadoJuego.desglosePuntaje.bonusRacha;
+    desglosePenalizacionErrores.textContent = '-' + estadoJuego.desglosePuntaje.penalizacionErrores;
+    desgloseBonusRapidez.textContent = '+' + estadoJuego.desglosePuntaje.bonusRapidez;
+    desgloseBonusIntentos.textContent = '+' + estadoJuego.desglosePuntaje.bonusPocosIntentos;
+    desgloseBonusFinalizar.textContent = '+' + estadoJuego.desglosePuntaje.bonusFinalizar;
+    desglosePenalizacionTiempo.textContent = '-' + estadoJuego.desglosePuntaje.penalizacionTiempo;
     modalVictoria.classList.remove('oculto');
     modalContenidoVictoria.focus();
 }
