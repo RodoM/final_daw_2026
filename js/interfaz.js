@@ -98,6 +98,7 @@ function formatearTiempo(segundosTotales) {
 }
 
 function actualizarMarcadores() {
+    marcadorNivel.textContent = NIVELES[estadoJuego.nivel].nombre;
     marcadorIntentos.textContent = estadoJuego.intentos;
     marcadorPares.textContent = estadoJuego.aciertos;
     marcadorErrores.textContent = estadoJuego.errores;
@@ -125,4 +126,29 @@ function mostrarModalVictoria() {
 
 function ocultarModalVictoria() {
     modalVictoria.classList.add('oculto');
+}
+
+function mostrarModalNivelCompletado() {
+    nivelCompletadoNombre.textContent = NIVELES[estadoJuego.nivel].nombre;
+    nivelCompletadoPuntaje.textContent = estadoJuego.puntaje;
+    modalNivelCompletado.classList.remove('oculto');
+    modalContenidoNivelCompletado.focus();
+}
+
+function ocultarModalNivelCompletado() {
+    modalNivelCompletado.classList.add('oculto');
+}
+
+function mostrarModalResultadoProgresivo() {
+    resultadoProgresivoNombre.textContent = estadoJuego.nombreJugador;
+    resultadoProgresivoIntentos.textContent = estadoJuego.intentosAcumuladosProgresivo;
+    resultadoProgresivoErrores.textContent = estadoJuego.erroresAcumuladosProgresivo;
+    resultadoProgresivoTiempo.textContent = formatearTiempo(estadoJuego.segundosAcumuladosProgresivo);
+    resultadoProgresivoPuntaje.textContent = estadoJuego.puntaje;
+    modalResultadoProgresivo.classList.remove('oculto');
+    modalContenidoResultadoProgresivo.focus();
+}
+
+function ocultarModalResultadoProgresivo() {
+    modalResultadoProgresivo.classList.add('oculto');
 }

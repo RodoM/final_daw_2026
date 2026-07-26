@@ -37,13 +37,16 @@ Además de la fórmula base, se suman o restan estos conceptos:
 La racha de aciertos y la de errores seguidos se cortan apenas ocurre el evento contrario. El modal
 de victoria muestra el desglose completo de cada concepto que sumó o restó puntos.
 
-## Ranking, modo oscuro y sonidos
+## Ranking, modo oscuro, modo progresivo y sonidos
 
 - **Ranking**: cada partida guarda jugador, nivel, puntaje, intentos, errores, fecha y duración en
   LocalStorage (clave `memotest-partidas`, últimas 50 partidas). Se puede ordenar por puntaje, fecha,
   duración o nivel, y borrar el historial completo con confirmación.
 - **Modo oscuro y claro**: preferencia guardada en LocalStorage (clave `memotest-tema`), disponible en
   el juego y en la página de contacto.
+- **Modo progresivo**: arranca en fácil y avanza automáticamente a medio y difícil, acumulando el
+  puntaje entre niveles. Al terminar los tres niveles muestra un resultado general y guarda una única
+  partida marcada como "Progresivo" en el ranking.
 - **Sonidos**: al seleccionar una carta, acertar un par, cometer un error y ganar la partida. Se
   pueden activar o desactivar, con la preferencia guardada en LocalStorage (clave `memotest-sonidos`).
 

@@ -29,15 +29,30 @@ function alCumplirseUnSegundo() {
 }
 
 function guardarResultadoPartida() {
+    var nivelGuardado;
+    var intentosGuardados;
+    var erroresGuardados;
+    var duracionGuardada;
     var partida;
+    if (estadoJuego.modoProgresivo === true) {
+        nivelGuardado = 'progresivo';
+        intentosGuardados = estadoJuego.intentosAcumuladosProgresivo;
+        erroresGuardados = estadoJuego.erroresAcumuladosProgresivo;
+        duracionGuardada = estadoJuego.segundosAcumuladosProgresivo;
+    } else {
+        nivelGuardado = estadoJuego.nivel;
+        intentosGuardados = estadoJuego.intentos;
+        erroresGuardados = estadoJuego.errores;
+        duracionGuardada = estadoJuego.segundos;
+    }
     partida = {
         nombre: estadoJuego.nombreJugador,
         puntaje: estadoJuego.puntaje,
-        nivel: estadoJuego.nivel,
-        intentos: estadoJuego.intentos,
-        errores: estadoJuego.errores,
+        nivel: nivelGuardado,
+        intentos: intentosGuardados,
+        errores: erroresGuardados,
         fecha: new Date().toISOString(),
-        duracion: estadoJuego.segundos
+        duracion: duracionGuardada
     };
     guardarPartida(partida);
 }
@@ -46,6 +61,18 @@ function terminarPartida() {
     detenerTemporizador();
     finalizarPartida();
     actualizarMarcadores();
+    if (estadoJuego.modoProgresivo === true) {
+        acumularEstadisticasNivelProgresivo();
+        if (quedanNivelesProgresivo() === true) {
+            reproducirSonido('acierto');
+            mostrarModalNivelCompletado();
+            return;
+        }
+        reproducirSonido('victoria');
+        guardarResultadoPartida();
+        mostrarModalResultadoProgresivo();
+        return;
+    }
     reproducirSonido('victoria');
     guardarResultadoPartida();
     mostrarModalVictoria();
@@ -115,16 +142,29 @@ function alHacerClickEnCarta(evento) {
 }
 
 function reiniciarPartida() {
+    var esProgresivo;
+    var nivelReinicio;
     var cartas;
     pararTemporizadoresPendientes();
     limpiarElementosDelTurno();
-    cartas = obtenerCartasDelNivel(estadoJuego.nivel);
+    esProgresivo = estadoJuego.modoProgresivo;
+    if (esProgresivo === true) {
+        nivelReinicio = NIVELES_PROGRESIVO[0];
+    } else {
+        nivelReinicio = estadoJuego.nivel;
+    }
+    cartas = obtenerCartasDelNivel(nivelReinicio);
     cartas = mezclarCartas(cartas);
-    reiniciarEstadoJuego(estadoJuego.nombreJugador, estadoJuego.nivel, cartas);
+    reiniciarEstadoJuego(estadoJuego.nombreJugador, nivelReinicio, cartas);
+    if (esProgresivo === true) {
+        iniciarModoProgresivo();
+    }
     dibujarTablero(estadoJuego.cartas, estadoJuego.nivel);
     desbloquearTablero();
     actualizarMarcadores();
     ocultarModalVictoria();
+    ocultarModalNivelCompletado();
+    ocultarModalResultadoProgresivo();
 }
 
 function alHacerClickEnReiniciar(evento) {
@@ -132,6 +172,10 @@ function alHacerClickEnReiniciar(evento) {
 }
 
 function alHacerClickEnJugarDeNuevo(evento) {
+    reiniciarPartida();
+}
+
+function alHacerClickEnJugarDeNuevoProgresivo(evento) {
     reiniciarPartida();
 }
 
@@ -145,8 +189,33 @@ function alHacerClickEnCerrarModal(evento) {
     ocultarModalVictoria();
 }
 
+function alHacerClickEnCerrarResultadoProgresivo(evento) {
+    ocultarModalResultadoProgresivo();
+}
+
+function alHacerClickEnSiguienteNivel(evento) {
+    var siguienteNivel;
+    var cartas;
+    avanzarNivelProgresivo();
+    siguienteNivel = nivelActualProgresivo();
+    cartas = obtenerCartasDelNivel(siguienteNivel);
+    cartas = mezclarCartas(cartas);
+    prepararSiguienteNivelProgresivo(siguienteNivel, cartas);
+    dibujarTablero(estadoJuego.cartas, estadoJuego.nivel);
+    desbloquearTablero();
+    actualizarMarcadores();
+    ocultarModalNivelCompletado();
+}
+
 function alPresionarTeclaEnDocumento(evento) {
     if (evento.key !== 'Escape') {
+        return;
+    }
+    if (modalNivelCompletado.classList.contains('oculto') === false) {
+        return;
+    }
+    if (modalResultadoProgresivo.classList.contains('oculto') === false) {
+        ocultarModalResultadoProgresivo();
         return;
     }
     if (modalVictoria.classList.contains('oculto')) {
@@ -187,11 +256,39 @@ function alEnviarFormularioInicio(evento) {
     mostrarPantallaJuego();
 }
 
+function alHacerClickEnModoProgresivo(evento) {
+    var errorNombre;
+    var nivelInicial;
+    var cartas;
+    errorNombre = validarNombreJugador(campoNombre.value);
+    if (errorNombre !== '') {
+        mostrarErrorInicio(errorNombre);
+        return;
+    }
+    ocultarErrorInicio();
+    pararTemporizadoresPendientes();
+    limpiarElementosDelTurno();
+    nivelInicial = NIVELES_PROGRESIVO[0];
+    cartas = obtenerCartasDelNivel(nivelInicial);
+    cartas = mezclarCartas(cartas);
+    reiniciarEstadoJuego(campoNombre.value.trim(), nivelInicial, cartas);
+    iniciarModoProgresivo();
+    dibujarTablero(estadoJuego.cartas, estadoJuego.nivel);
+    desbloquearTablero();
+    actualizarMarcadores();
+    ocultarModalVictoria();
+    mostrarPantallaJuego();
+}
+
 function registrarEventos() {
     formularioInicio.addEventListener('submit', alEnviarFormularioInicio);
+    botonModoProgresivo.addEventListener('click', alHacerClickEnModoProgresivo);
     botonReiniciar.addEventListener('click', alHacerClickEnReiniciar);
     botonVolverInicio.addEventListener('click', alHacerClickEnVolverInicio);
     botonJugarDeNuevo.addEventListener('click', alHacerClickEnJugarDeNuevo);
     botonCerrarModal.addEventListener('click', alHacerClickEnCerrarModal);
+    botonSiguienteNivel.addEventListener('click', alHacerClickEnSiguienteNivel);
+    botonJugarDeNuevoProgresivo.addEventListener('click', alHacerClickEnJugarDeNuevoProgresivo);
+    botonCerrarResultadoProgresivo.addEventListener('click', alHacerClickEnCerrarResultadoProgresivo);
     document.addEventListener('keydown', alPresionarTeclaEnDocumento);
 }

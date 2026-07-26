@@ -11,6 +11,7 @@ var BONUS_POCOS_INTENTOS = 100;
 var MARGEN_INTENTOS_POCOS = 2;
 var BONUS_RAPIDEZ = 100;
 var TIEMPOS_LIMITE_RAPIDEZ = { facil: 60, medio: 90, dificil: 150 };
+var NIVELES_PROGRESIVO = ['facil', 'medio', 'dificil'];
 
 var estadoJuego = {
     nombreJugador: '',
@@ -28,6 +29,11 @@ var estadoJuego = {
     erroresSeguidos: 0,
     partidaIniciada: false,
     partidaTerminada: false,
+    modoProgresivo: false,
+    indiceNivelProgresivo: 0,
+    intentosAcumuladosProgresivo: 0,
+    erroresAcumuladosProgresivo: 0,
+    segundosAcumuladosProgresivo: 0,
     desglosePuntaje: {
         porPares: 0,
         bonusRacha: 0,
@@ -80,7 +86,52 @@ function reiniciarEstadoJuego(nombreJugador, nivel, cartas) {
     estadoJuego.erroresSeguidos = 0;
     estadoJuego.partidaIniciada = false;
     estadoJuego.partidaTerminada = false;
+    estadoJuego.modoProgresivo = false;
+    estadoJuego.indiceNivelProgresivo = 0;
+    estadoJuego.intentosAcumuladosProgresivo = 0;
+    estadoJuego.erroresAcumuladosProgresivo = 0;
+    estadoJuego.segundosAcumuladosProgresivo = 0;
     estadoJuego.desglosePuntaje = crearDesglosePuntajeVacio();
+}
+
+function prepararSiguienteNivelProgresivo(nivel, cartas) {
+    estadoJuego.nivel = nivel;
+    estadoJuego.cartas = cartas;
+    estadoJuego.primeraCarta = null;
+    estadoJuego.segundaCarta = null;
+    estadoJuego.tableroBloqueado = true;
+    estadoJuego.intentos = 0;
+    estadoJuego.aciertos = 0;
+    estadoJuego.errores = 0;
+    estadoJuego.segundos = 0;
+    estadoJuego.rachaActual = 0;
+    estadoJuego.erroresSeguidos = 0;
+    estadoJuego.partidaIniciada = false;
+    estadoJuego.partidaTerminada = false;
+    estadoJuego.desglosePuntaje = crearDesglosePuntajeVacio();
+}
+
+function iniciarModoProgresivo() {
+    estadoJuego.modoProgresivo = true;
+    estadoJuego.indiceNivelProgresivo = 0;
+}
+
+function nivelActualProgresivo() {
+    return NIVELES_PROGRESIVO[estadoJuego.indiceNivelProgresivo];
+}
+
+function quedanNivelesProgresivo() {
+    return estadoJuego.indiceNivelProgresivo < NIVELES_PROGRESIVO.length - 1;
+}
+
+function avanzarNivelProgresivo() {
+    estadoJuego.indiceNivelProgresivo = estadoJuego.indiceNivelProgresivo + 1;
+}
+
+function acumularEstadisticasNivelProgresivo() {
+    estadoJuego.intentosAcumuladosProgresivo = estadoJuego.intentosAcumuladosProgresivo + estadoJuego.intentos;
+    estadoJuego.erroresAcumuladosProgresivo = estadoJuego.erroresAcumuladosProgresivo + estadoJuego.errores;
+    estadoJuego.segundosAcumuladosProgresivo = estadoJuego.segundosAcumuladosProgresivo + estadoJuego.segundos;
 }
 
 function iniciarPartida() {

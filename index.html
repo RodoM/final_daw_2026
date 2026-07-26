@@ -38,10 +38,12 @@
                 </select>
                 <p class="mensaje-error oculto" id="error-inicio"></p>
                 <button type="submit" class="boton-principal">Comenzar</button>
+                <button type="button" class="boton-secundario" id="boton-modo-progresivo">Jugar modo progresivo</button>
             </form>
         </section>
         <section class="pantalla-juego oculto" id="pantalla-juego">
             <section class="panel-marcadores" id="panel-marcadores">
+                <p>Nivel: <span id="marcador-nivel"></span></p>
                 <p>Intentos: <span id="marcador-intentos">0</span></p>
                 <p>Pares: <span id="marcador-pares">0</span></p>
                 <p>Errores: <span id="marcador-errores">0</span></p>
@@ -76,6 +78,30 @@
                 <div class="modal-botones">
                     <button type="button" class="boton-principal" id="boton-jugar-de-nuevo">Jugar de nuevo</button>
                     <button type="button" class="boton-secundario" id="boton-cerrar-modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-fondo oculto" id="modal-nivel-completado">
+            <div class="modal-contenido" id="modal-contenido-nivel-completado" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-nivel-completado" tabindex="-1">
+                <h2 id="titulo-modal-nivel-completado">¡Nivel completado!</h2>
+                <p>Terminaste el nivel <span id="nivel-completado-nombre"></span>.</p>
+                <p>Puntaje acumulado: <span id="nivel-completado-puntaje"></span></p>
+                <div class="modal-botones">
+                    <button type="button" class="boton-principal" id="boton-siguiente-nivel">Continuar</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-fondo oculto" id="modal-resultado-progresivo">
+            <div class="modal-contenido" id="modal-contenido-resultado-progresivo" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-resultado-progresivo" tabindex="-1">
+                <h2 id="titulo-modal-resultado-progresivo">¡Recorrido progresivo completo!</h2>
+                <p>Jugador: <span id="resultado-progresivo-nombre"></span></p>
+                <p>Intentos totales: <span id="resultado-progresivo-intentos"></span></p>
+                <p>Errores totales: <span id="resultado-progresivo-errores"></span></p>
+                <p>Tiempo total: <span id="resultado-progresivo-tiempo"></span></p>
+                <p>Puntaje final: <span id="resultado-progresivo-puntaje"></span></p>
+                <div class="modal-botones">
+                    <button type="button" class="boton-principal" id="boton-jugar-de-nuevo-progresivo">Jugar de nuevo</button>
+                    <button type="button" class="boton-secundario" id="boton-cerrar-resultado-progresivo">Cerrar</button>
                 </div>
             </div>
         </div>
