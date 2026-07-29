@@ -36,6 +36,11 @@
     cursor: pointer;
 }
 
+.carta:focus-visible {
+    outline: 0.125rem solid var(--color-secundario);
+    outline-offset: 0.125rem;
+}
+
 .carta-imagen {
     display: none;
     width: 70%;
@@ -120,6 +125,8 @@
     padding: 0.25rem;
     border: 1px solid var(--color-borde);
     border-radius: 0.25rem;
+    background: var(--color-fondo);
+    color: var(--color-texto);
 }
 
 .mensaje-sin-partidas {

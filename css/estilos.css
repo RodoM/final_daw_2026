@@ -1,4 +1,5 @@
 :root {
+    color-scheme: light;
     --color-primario: #0b6e4f;
     --color-primario-oscuro: #094f39;
     --color-secundario: #f4b400;
@@ -8,6 +9,10 @@
     --color-texto-sobre-secundario: #1c1c1c;
     --color-borde: #d9d9d2;
     --color-error: #c0392b;
+}
+
+html {
+    background: var(--color-fondo);
 }
 
 body {
@@ -53,6 +58,11 @@ nav a:hover {
     color: var(--color-texto-sobre-secundario);
 }
 
+nav a:focus-visible {
+    outline: 0.125rem solid var(--color-secundario);
+    outline-offset: 0.125rem;
+}
+
 main {
     flex: 1;
     padding: 1rem;
@@ -91,15 +101,17 @@ footer {
     padding: 0.5rem;
     border: 1px solid var(--color-borde);
     border-radius: 0.25rem;
+    background: var(--color-fondo);
+    color: var(--color-texto);
     font-size: 1rem;
 }
 
 .mensaje-error {
     padding: 0.5rem;
-    border: 1px solid var(--color-secundario);
+    border: 1px solid var(--color-error);
     border-radius: 0.25rem;
-    background: var(--color-secundario);
-    color: var(--color-texto-sobre-secundario);
+    background: var(--color-fondo);
+    color: var(--color-error);
     font-size: 0.875rem;
 }
 
@@ -118,6 +130,11 @@ footer {
     color: var(--color-texto-sobre-secundario);
 }
 
+.boton-principal:focus-visible {
+    outline: 0.125rem solid var(--color-texto);
+    outline-offset: 0.125rem;
+}
+
 .boton-secundario {
     padding: 0.75rem;
     border: 1px solid var(--color-primario);
@@ -131,6 +148,11 @@ footer {
 .boton-secundario:hover {
     background-color: var(--color-secundario);
     color: var(--color-texto-sobre-secundario);
+}
+
+.boton-secundario:focus-visible {
+    outline: 0.125rem solid var(--color-primario);
+    outline-offset: 0.125rem;
 }
 
 .acciones-header {
@@ -156,6 +178,11 @@ footer {
     color: var(--color-texto-sobre-secundario);
 }
 
+.boton-header:focus-visible {
+    outline: 0.125rem solid var(--color-secundario);
+    outline-offset: 0.125rem;
+}
+
 .modal-fondo {
     display: flex;
     justify-content: center;
@@ -166,7 +193,7 @@ footer {
     bottom: 0;
     left: 0;
     padding: 1rem;
-    background: #00000099;
+    background: rgba(0, 0, 0, 0.6);
 }
 
 .modal-contenido {
@@ -174,11 +201,13 @@ footer {
     flex-direction: column;
     width: 100%;
     max-width: 20rem;
+    max-height: 90vh;
     gap: 0.5rem;
     padding: 1.5rem;
     border-radius: 0.5rem;
     background: var(--color-fondo);
     color: var(--color-texto);
+    overflow-y: auto;
 }
 
 .modal-botones {
@@ -193,8 +222,9 @@ footer {
 }
 
 .tema-oscuro {
-    --color-primario: #1a9c6f;
-    --color-primario-oscuro: #0f6b4b;
+    color-scheme: dark;
+    --color-primario: #0f7a52;
+    --color-primario-oscuro: #0a5238;
     --color-secundario: #f4c430;
     --color-fondo: #14181a;
     --color-texto: #f2f2f0;
