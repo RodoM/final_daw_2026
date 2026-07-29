@@ -47,6 +47,10 @@ var resultadoProgresivoTiempo;
 var resultadoProgresivoPuntaje;
 var botonJugarDeNuevoProgresivo;
 var botonCerrarResultadoProgresivo;
+var modalConfirmarReinicioProgresivo;
+var modalContenidoConfirmarReinicioProgresivo;
+var botonConfirmarReinicioProgresivo;
+var botonCancelarReinicioProgresivo;
 
 function iniciarAplicacion() {
     formularioInicio = document.getElementById('formulario-inicio');
@@ -96,6 +100,10 @@ function iniciarAplicacion() {
     resultadoProgresivoPuntaje = document.getElementById('resultado-progresivo-puntaje');
     botonJugarDeNuevoProgresivo = document.getElementById('boton-jugar-de-nuevo-progresivo');
     botonCerrarResultadoProgresivo = document.getElementById('boton-cerrar-resultado-progresivo');
+    modalConfirmarReinicioProgresivo = document.getElementById('modal-confirmar-reinicio-progresivo');
+    modalContenidoConfirmarReinicioProgresivo = document.getElementById('modal-contenido-confirmar-reinicio-progresivo');
+    botonConfirmarReinicioProgresivo = document.getElementById('boton-confirmar-reinicio-progresivo');
+    botonCancelarReinicioProgresivo = document.getElementById('boton-cancelar-reinicio-progresivo');
     registrarEventos();
     iniciarRanking();
     iniciarTema();

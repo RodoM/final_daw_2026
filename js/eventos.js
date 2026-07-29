@@ -141,6 +141,11 @@ function alHacerClickEnCarta(evento) {
     resolverTurno();
 }
 
+function mostrarErrorCartas() {
+    mostrarErrorInicio(errorCartas);
+    mostrarPantallaInicio();
+}
+
 function reiniciarPartida() {
     var esProgresivo;
     var nivelReinicio;
@@ -154,6 +159,10 @@ function reiniciarPartida() {
         nivelReinicio = estadoJuego.nivel;
     }
     cartas = obtenerCartasDelNivel(nivelReinicio);
+    if (errorCartas !== '') {
+        mostrarErrorCartas();
+        return;
+    }
     cartas = mezclarCartas(cartas);
     reiniciarEstadoJuego(estadoJuego.nombreJugador, nivelReinicio, cartas);
     if (esProgresivo === true) {
@@ -165,18 +174,42 @@ function reiniciarPartida() {
     ocultarModalVictoria();
     ocultarModalNivelCompletado();
     ocultarModalResultadoProgresivo();
+    ocultarModalConfirmarReinicioProgresivo();
 }
 
 function alHacerClickEnReiniciar(evento) {
+    if (estadoJuego.modoProgresivo === true) {
+        mostrarModalConfirmarReinicioProgresivo();
+        return;
+    }
     reiniciarPartida();
 }
 
-function alHacerClickEnJugarDeNuevo(evento) {
+function alHacerClickEnConfirmarReinicioProgresivo(evento) {
+    ocultarModalConfirmarReinicioProgresivo();
     reiniciarPartida();
 }
 
-function alHacerClickEnJugarDeNuevoProgresivo(evento) {
-    reiniciarPartida();
+function alHacerClickEnCancelarReinicioProgresivo(evento) {
+    ocultarModalConfirmarReinicioProgresivo();
+}
+
+function alHacerClickFueraDelModalVictoria(evento) {
+    if (evento.target === modalVictoria) {
+        ocultarModalVictoria();
+    }
+}
+
+function alHacerClickFueraDelModalResultadoProgresivo(evento) {
+    if (evento.target === modalResultadoProgresivo) {
+        ocultarModalResultadoProgresivo();
+    }
+}
+
+function alHacerClickFueraDelModalConfirmarReinicioProgresivo(evento) {
+    if (evento.target === modalConfirmarReinicioProgresivo) {
+        ocultarModalConfirmarReinicioProgresivo();
+    }
 }
 
 function alHacerClickEnVolverInicio(evento) {
@@ -199,6 +232,10 @@ function alHacerClickEnSiguienteNivel(evento) {
     avanzarNivelProgresivo();
     siguienteNivel = nivelActualProgresivo();
     cartas = obtenerCartasDelNivel(siguienteNivel);
+    if (errorCartas !== '') {
+        mostrarErrorCartas();
+        return;
+    }
     cartas = mezclarCartas(cartas);
     prepararSiguienteNivelProgresivo(siguienteNivel, cartas);
     dibujarTablero(estadoJuego.cartas, estadoJuego.nivel);
@@ -209,6 +246,10 @@ function alHacerClickEnSiguienteNivel(evento) {
 
 function alPresionarTeclaEnDocumento(evento) {
     if (evento.key !== 'Escape') {
+        return;
+    }
+    if (modalConfirmarReinicioProgresivo.classList.contains('oculto') === false) {
+        ocultarModalConfirmarReinicioProgresivo();
         return;
     }
     if (modalNivelCompletado.classList.contains('oculto') === false) {
@@ -241,7 +282,7 @@ function alEnviarFormularioInicio(evento) {
     }
     cartas = obtenerCartasDelNivel(campoNivel.value);
     if (errorCartas !== '') {
-        mostrarErrorInicio(errorCartas);
+        mostrarErrorCartas();
         return;
     }
     ocultarErrorInicio();
@@ -270,6 +311,10 @@ function alHacerClickEnModoProgresivo(evento) {
     limpiarElementosDelTurno();
     nivelInicial = NIVELES_PROGRESIVO[0];
     cartas = obtenerCartasDelNivel(nivelInicial);
+    if (errorCartas !== '') {
+        mostrarErrorCartas();
+        return;
+    }
     cartas = mezclarCartas(cartas);
     reiniciarEstadoJuego(campoNombre.value.trim(), nivelInicial, cartas);
     iniciarModoProgresivo();
@@ -285,10 +330,15 @@ function registrarEventos() {
     botonModoProgresivo.addEventListener('click', alHacerClickEnModoProgresivo);
     botonReiniciar.addEventListener('click', alHacerClickEnReiniciar);
     botonVolverInicio.addEventListener('click', alHacerClickEnVolverInicio);
-    botonJugarDeNuevo.addEventListener('click', alHacerClickEnJugarDeNuevo);
+    botonJugarDeNuevo.addEventListener('click', reiniciarPartida);
     botonCerrarModal.addEventListener('click', alHacerClickEnCerrarModal);
     botonSiguienteNivel.addEventListener('click', alHacerClickEnSiguienteNivel);
-    botonJugarDeNuevoProgresivo.addEventListener('click', alHacerClickEnJugarDeNuevoProgresivo);
+    botonJugarDeNuevoProgresivo.addEventListener('click', reiniciarPartida);
     botonCerrarResultadoProgresivo.addEventListener('click', alHacerClickEnCerrarResultadoProgresivo);
+    botonConfirmarReinicioProgresivo.addEventListener('click', alHacerClickEnConfirmarReinicioProgresivo);
+    botonCancelarReinicioProgresivo.addEventListener('click', alHacerClickEnCancelarReinicioProgresivo);
+    modalVictoria.addEventListener('click', alHacerClickFueraDelModalVictoria);
+    modalResultadoProgresivo.addEventListener('click', alHacerClickFueraDelModalResultadoProgresivo);
+    modalConfirmarReinicioProgresivo.addEventListener('click', alHacerClickFueraDelModalConfirmarReinicioProgresivo);
     document.addEventListener('keydown', alPresionarTeclaEnDocumento);
 }

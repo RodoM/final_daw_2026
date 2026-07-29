@@ -97,8 +97,17 @@ function formatearTiempo(segundosTotales) {
     return minutosTexto + ':' + segundosTexto;
 }
 
+function obtenerTextoNivelActual() {
+    var nombreNivel;
+    nombreNivel = NIVELES[estadoJuego.nivel].nombre;
+    if (estadoJuego.modoProgresivo === true) {
+        return nombreNivel + ' (' + (estadoJuego.indiceNivelProgresivo + 1) + ' de ' + NIVELES_PROGRESIVO.length + ')';
+    }
+    return nombreNivel;
+}
+
 function actualizarMarcadores() {
-    marcadorNivel.textContent = NIVELES[estadoJuego.nivel].nombre;
+    marcadorNivel.textContent = obtenerTextoNivelActual();
     marcadorIntentos.textContent = estadoJuego.intentos;
     marcadorPares.textContent = estadoJuego.aciertos;
     marcadorErrores.textContent = estadoJuego.errores;
@@ -151,4 +160,13 @@ function mostrarModalResultadoProgresivo() {
 
 function ocultarModalResultadoProgresivo() {
     modalResultadoProgresivo.classList.add('oculto');
+}
+
+function mostrarModalConfirmarReinicioProgresivo() {
+    modalConfirmarReinicioProgresivo.classList.remove('oculto');
+    modalContenidoConfirmarReinicioProgresivo.focus();
+}
+
+function ocultarModalConfirmarReinicioProgresivo() {
+    modalConfirmarReinicioProgresivo.classList.add('oculto');
 }
