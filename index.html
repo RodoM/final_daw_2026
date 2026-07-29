@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memotest Mundial 2026</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/banderas/argentina.svg">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/juego.css">
@@ -16,6 +17,7 @@
         <nav>
             <a href="pages/contacto.html">Contacto</a>
             <a href="https://github.com/RodoM/final_daw_2026" target="_blank" rel="noopener noreferrer">Repositorio en GitHub</a>
+            <a href="https://rodom.github.io/final_daw_2026/" target="_blank" rel="noopener noreferrer">Ver en GitHub Pages</a>
         </nav>
         <div class="acciones-header">
             <button type="button" class="boton-header" id="boton-ranking">Ranking</button>
@@ -36,7 +38,7 @@
                     <option value="medio">Medio (20 cartas)</option>
                     <option value="dificil">Difícil (36 cartas)</option>
                 </select>
-                <p class="mensaje-error oculto" id="error-inicio"></p>
+                <p class="mensaje-error oculto" id="error-inicio" role="alert" aria-live="assertive"></p>
                 <button type="submit" class="boton-principal">Comenzar</button>
                 <button type="button" class="boton-secundario" id="boton-modo-progresivo">Jugar modo progresivo</button>
             </form>
@@ -150,8 +152,20 @@
                 </div>
             </div>
         </div>
+        <div class="modal-fondo oculto" id="modal-confirmar-reinicio-progresivo">
+            <div class="modal-contenido" id="modal-contenido-confirmar-reinicio-progresivo" role="dialog" aria-modal="true" aria-labelledby="titulo-modal-confirmar-reinicio-progresivo" tabindex="-1">
+                <h2 id="titulo-modal-confirmar-reinicio-progresivo">Reiniciar modo progresivo</h2>
+                <p>Si reiniciás ahora vas a perder el puntaje acumulado del modo progresivo. ¿Querés continuar?</p>
+                <div class="modal-botones">
+                    <button type="button" class="boton-principal" id="boton-confirmar-reinicio-progresivo">Sí, reiniciar</button>
+                    <button type="button" class="boton-secundario" id="boton-cancelar-reinicio-progresivo">Cancelar</button>
+                </div>
+            </div>
+        </div>
     </main>
-    <footer></footer>
+    <footer>
+        <p>Memotest Mundial 2026 — Ignacio Cainelli, Alejandro Santini y Rodolfo Meroi.</p>
+    </footer>
     <script src="js/validaciones.js"></script>
     <script src="js/datos-cartas.js"></script>
     <script src="js/logica-juego.js"></script>

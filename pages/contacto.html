@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto — Memotest Mundial 2026</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/images/banderas/argentina.svg">
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/estilos.css">
     <link rel="stylesheet" href="../css/contacto.css">
@@ -28,21 +29,23 @@
             <form class="formulario-contacto" id="formulario-contacto">
                 <label for="nombre-contacto">Nombre</label>
                 <input type="text" id="nombre-contacto" name="nombre-contacto" autocomplete="name">
-                <p class="mensaje-error oculto" id="error-nombre-contacto"></p>
+                <p class="mensaje-error oculto" id="error-nombre-contacto" role="alert" aria-live="assertive"></p>
 
                 <label for="mail-contacto">Mail</label>
                 <input type="text" id="mail-contacto" name="mail-contacto" autocomplete="email">
-                <p class="mensaje-error oculto" id="error-mail-contacto"></p>
+                <p class="mensaje-error oculto" id="error-mail-contacto" role="alert" aria-live="assertive"></p>
 
                 <label for="mensaje-contacto">Mensaje</label>
                 <textarea id="mensaje-contacto" name="mensaje-contacto" rows="6"></textarea>
-                <p class="mensaje-error oculto" id="error-mensaje-contacto"></p>
+                <p class="mensaje-error oculto" id="error-mensaje-contacto" role="alert" aria-live="assertive"></p>
 
                 <button type="submit" class="boton-principal">Enviar</button>
             </form>
         </section>
     </main>
-    <footer></footer>
+    <footer>
+        <p>Memotest Mundial 2026 — Ignacio Cainelli, Alejandro Santini y Rodolfo Meroi.</p>
+    </footer>
     <script src="../js/validaciones.js"></script>
     <script src="../js/contacto.js"></script>
 </body>
