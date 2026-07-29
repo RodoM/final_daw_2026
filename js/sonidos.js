@@ -10,6 +10,10 @@ var SONIDOS = {
 var sonidosActivados;
 var botonSonido;
 
+function ignorarErrorDeReproduccion(error) {
+    return;
+}
+
 function reproducirSonido(nombreSonido) {
     var audio;
     if (sonidosActivados === false) {
@@ -17,7 +21,7 @@ function reproducirSonido(nombreSonido) {
     }
     audio = SONIDOS[nombreSonido];
     audio.currentTime = 0;
-    audio.play();
+    audio.play().catch(ignorarErrorDeReproduccion);
 }
 
 function actualizarTextoBotonSonido() {
@@ -29,7 +33,7 @@ function actualizarTextoBotonSonido() {
 }
 
 function alHacerClickEnBotonSonido(evento) {
-    sonidosActivados = sonidosActivados === false;
+    sonidosActivados = !sonidosActivados;
     guardarSonidosActivados(sonidosActivados);
     actualizarTextoBotonSonido();
 }

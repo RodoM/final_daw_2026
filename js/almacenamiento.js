@@ -5,15 +5,24 @@ var LIMITE_PARTIDAS_GUARDADAS = 50;
 
 function obtenerPartidas() {
     var textoGuardado;
-    textoGuardado = localStorage.getItem(CLAVE_PARTIDAS);
+    var partidas;
+    try {
+        textoGuardado = localStorage.getItem(CLAVE_PARTIDAS);
+    } catch (error) {
+        return [];
+    }
     if (textoGuardado === null) {
         return [];
     }
     try {
-        return JSON.parse(textoGuardado);
+        partidas = JSON.parse(textoGuardado);
     } catch (error) {
         return [];
     }
+    if (Array.isArray(partidas) === false) {
+        return [];
+    }
+    return partidas;
 }
 
 function guardarPartida(partida) {
@@ -23,18 +32,30 @@ function guardarPartida(partida) {
     if (partidas.length > LIMITE_PARTIDAS_GUARDADAS) {
         partidas = partidas.slice(partidas.length - LIMITE_PARTIDAS_GUARDADAS);
     }
-    localStorage.setItem(CLAVE_PARTIDAS, JSON.stringify(partidas));
+    try {
+        localStorage.setItem(CLAVE_PARTIDAS, JSON.stringify(partidas));
+    } catch (error) {
+        return;
+    }
 }
 
 function borrarPartidas() {
-    localStorage.removeItem(CLAVE_PARTIDAS);
+    try {
+        localStorage.removeItem(CLAVE_PARTIDAS);
+    } catch (error) {
+        return;
+    }
 }
 
 var CLAVE_TEMA = 'memotest-tema';
 
 function obtenerTema() {
     var temaGuardado;
-    temaGuardado = localStorage.getItem(CLAVE_TEMA);
+    try {
+        temaGuardado = localStorage.getItem(CLAVE_TEMA);
+    } catch (error) {
+        return 'claro';
+    }
     if (temaGuardado === null) {
         return 'claro';
     }
@@ -42,14 +63,22 @@ function obtenerTema() {
 }
 
 function guardarTema(tema) {
-    localStorage.setItem(CLAVE_TEMA, tema);
+    try {
+        localStorage.setItem(CLAVE_TEMA, tema);
+    } catch (error) {
+        return;
+    }
 }
 
 var CLAVE_SONIDOS = 'memotest-sonidos';
 
 function obtenerSonidosActivados() {
     var valorGuardado;
-    valorGuardado = localStorage.getItem(CLAVE_SONIDOS);
+    try {
+        valorGuardado = localStorage.getItem(CLAVE_SONIDOS);
+    } catch (error) {
+        return true;
+    }
     if (valorGuardado === null) {
         return true;
     }
@@ -57,9 +86,13 @@ function obtenerSonidosActivados() {
 }
 
 function guardarSonidosActivados(sonidosActivados) {
-    if (sonidosActivados === true) {
-        localStorage.setItem(CLAVE_SONIDOS, 'activado');
+    try {
+        if (sonidosActivados === true) {
+            localStorage.setItem(CLAVE_SONIDOS, 'activado');
+            return;
+        }
+        localStorage.setItem(CLAVE_SONIDOS, 'desactivado');
+    } catch (error) {
         return;
     }
-    localStorage.setItem(CLAVE_SONIDOS, 'desactivado');
 }

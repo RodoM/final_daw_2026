@@ -39,11 +39,19 @@ function obtenerCartasDelNivel(nivel) {
         errorCartas = 'El nivel elegido no existe.';
         return [];
     }
+    if (BANDERAS.length < configuracionNivel.pares) {
+        errorCartas = 'No hay suficientes banderas para armar este nivel.';
+        return [];
+    }
     cartas = [];
     for (indice = 0; indice < configuracionNivel.pares; indice++) {
         bandera = BANDERAS[indice];
         cartas.push({ id: bandera.id, nombre: bandera.nombre, imagen: bandera.imagen });
         cartas.push({ id: bandera.id, nombre: bandera.nombre, imagen: bandera.imagen });
+    }
+    if (cartas.length % 2 !== 0) {
+        errorCartas = 'La cantidad de cartas generadas no es par.';
+        return [];
     }
     errorCartas = '';
     return cartas;

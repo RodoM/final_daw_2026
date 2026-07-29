@@ -13,6 +13,18 @@ var BONUS_RAPIDEZ = 100;
 var TIEMPOS_LIMITE_RAPIDEZ = { facil: 60, medio: 90, dificil: 150 };
 var NIVELES_PROGRESIVO = ['facil', 'medio', 'dificil'];
 
+function crearDesglosePuntajeVacio() {
+    return {
+        porPares: 0,
+        bonusRacha: 0,
+        penalizacionErrores: 0,
+        bonusRapidez: 0,
+        bonusPocosIntentos: 0,
+        bonusFinalizar: 0,
+        penalizacionTiempo: 0
+    };
+}
+
 var estadoJuego = {
     nombreJugador: '',
     nivel: '',
@@ -34,15 +46,7 @@ var estadoJuego = {
     intentosAcumuladosProgresivo: 0,
     erroresAcumuladosProgresivo: 0,
     segundosAcumuladosProgresivo: 0,
-    desglosePuntaje: {
-        porPares: 0,
-        bonusRacha: 0,
-        penalizacionErrores: 0,
-        bonusRapidez: 0,
-        bonusPocosIntentos: 0,
-        bonusFinalizar: 0,
-        penalizacionTiempo: 0
-    }
+    desglosePuntaje: crearDesglosePuntajeVacio()
 };
 
 function mezclarCartas(cartas) {
@@ -56,18 +60,6 @@ function mezclarCartas(cartas) {
         cartas[aleatorio] = temporal;
     }
     return cartas;
-}
-
-function crearDesglosePuntajeVacio() {
-    return {
-        porPares: 0,
-        bonusRacha: 0,
-        penalizacionErrores: 0,
-        bonusRapidez: 0,
-        bonusPocosIntentos: 0,
-        bonusFinalizar: 0,
-        penalizacionTiempo: 0
-    };
 }
 
 function reiniciarEstadoJuego(nombreJugador, nivel, cartas) {
@@ -165,16 +157,21 @@ function compararCartasSeleccionadas() {
 }
 
 function registrarAcierto() {
+    var bonusRacha;
     estadoJuego.intentos = estadoJuego.intentos + 1;
     estadoJuego.aciertos = estadoJuego.aciertos + 1;
     estadoJuego.rachaActual = estadoJuego.rachaActual + 1;
     estadoJuego.erroresSeguidos = 0;
     estadoJuego.puntaje = estadoJuego.puntaje + PUNTOS_POR_PAR;
     estadoJuego.desglosePuntaje.porPares = estadoJuego.desglosePuntaje.porPares + PUNTOS_POR_PAR;
-    if (estadoJuego.rachaActual >= UMBRAL_RACHA) {
-        estadoJuego.puntaje = estadoJuego.puntaje + BONUS_RACHA;
-        estadoJuego.desglosePuntaje.bonusRacha = estadoJuego.desglosePuntaje.bonusRacha + BONUS_RACHA;
+    bonusRacha = 0;
+    if (estadoJuego.rachaActual === UMBRAL_RACHA) {
+        bonusRacha = BONUS_RACHA * UMBRAL_RACHA;
+    } else if (estadoJuego.rachaActual > UMBRAL_RACHA) {
+        bonusRacha = BONUS_RACHA;
     }
+    estadoJuego.puntaje = estadoJuego.puntaje + bonusRacha;
+    estadoJuego.desglosePuntaje.bonusRacha = estadoJuego.desglosePuntaje.bonusRacha + bonusRacha;
 }
 
 function registrarError() {
